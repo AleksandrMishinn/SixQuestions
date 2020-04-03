@@ -107,5 +107,51 @@
         </insert>
     </changeSet>
 
+    <changeSet id="1.0.7" author="aleksandr.mishin">
+
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="username" value="admin"/>
+            <column name="email" value="a.mail@gmail.com"/>
+            <column name="first_name" value="admin"/>
+            <column name="last_name" value="admin"/>
+            <column name="password" value="$2y$12$vL/gZ0gSvGLwsQCKaQMNHe64ukAmrVWjf7rEnau/qbB3725AlFo3i"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="username" value="TestUser1"/>
+            <column name="email" value="TestUser1@gmail.com"/>
+            <column name="first_name" value="test"/>
+            <column name="last_name" value="first"/>
+            <column name="password" value="$2y$12$vL/gZ0gSvGLwsQCKaQMNHe64ukAmrVWjf7rEnau/qbB3725AlFo3i"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="id" value="3"/>
+            <column name="username" value="TestUser2"/>
+            <column name="email" value="TestUser2@gmail.com"/>
+            <column name="first_name" value="test"/>
+            <column name="last_name" value="second"/>
+            <column name="password" value="$2y$12$vL/gZ0gSvGLwsQCKaQMNHe64ukAmrVWjf7rEnau/qbB3725AlFo3i"/>
+        </insert>
+
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="2"/>
+        </insert>
+
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="1"/>
+        </insert>
+
+        <insert tableName="user_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="1"/>
+        </insert>
+
+    </changeSet>
+
 
 </databaseChangeLog>
