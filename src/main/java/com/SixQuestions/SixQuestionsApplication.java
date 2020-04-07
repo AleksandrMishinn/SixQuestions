@@ -10,4 +10,5 @@ public class SixQuestionsApplication {
 		SpringApplication.run(SixQuestionsApplication.class, args);
 	}
 
+
 }
