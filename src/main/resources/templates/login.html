@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-	<title>Welcom</title>
+	<title>Welcome</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -42,6 +42,12 @@
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
+					<div class="error" th:if="${param.error}">
+						<div class="alert alert-danger">
+							Wrong login / password
+						</div>
+					</div>
+
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" name="username" id="username" autofocus="autofocus">
 						<span class="focus-input100" data-placeholder="Login"></span>
@@ -68,8 +74,7 @@
 						<span class="txt1">
 							Don’t have an account?
 						</span>
-
-						<a class="txt2" href="#">
+						<a class="txt2" th:href="@{/registration}">
 							Sign Up
 						</a>
 					</div>

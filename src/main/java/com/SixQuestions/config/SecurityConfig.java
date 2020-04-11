@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -19,8 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] LOGIN_ENDPOINT = {
             "/api/v1/auth/login",
-            "/login",
-            "/login-error"
+            "/login"
     };
 
     private static final String[] PUBLIC_MATCHERS = {
@@ -47,21 +47,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
 
-                .httpBasic().disable()
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+        http
                 .authorizeRequests()
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
-                .antMatchers("/login").permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .apply(new JwtConfigurer(jwtTokenProvider));
+                .apply(new JwtConfigurer(jwtTokenProvider))
+                .and().formLogin().loginPage("/login")
+                .defaultSuccessUrl("/main-page").failureUrl("/login?error").permitAll()
 
+//                .httpBasic().disable()
+//                .csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+        ;
 
     }
 
